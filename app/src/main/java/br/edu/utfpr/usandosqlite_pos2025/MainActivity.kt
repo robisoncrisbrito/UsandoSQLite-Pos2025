@@ -66,11 +66,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun btAlterarOnClick() {
+        val registro = ContentValues()
+        registro.put( "nome", binding.etNome.text.toString() )
+        registro.put( "telefone", binding.etTelefone.text.toString() )
+
+        banco.update(
+            "cadastro",
+            registro,
+            "_id=${binding.etCod.text.toString()}",
+            null
+        )
+
+        Toast.makeText( this, "Registro Alterado...", Toast.LENGTH_LONG ).show()
 
     }
 
     fun btExcluirOnClick() {
+        banco.delete( "cadastro", "_id=${binding.etCod.text.toString()}", null )
 
+        Toast.makeText( this, "Registro Excluído...", Toast.LENGTH_LONG ).show()
     }
 
     fun btPesquisarOnClick() {
