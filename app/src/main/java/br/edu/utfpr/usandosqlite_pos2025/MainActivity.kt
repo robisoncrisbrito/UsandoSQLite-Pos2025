@@ -1,6 +1,7 @@
 package br.edu.utfpr.usandosqlite_pos2025
 
 import android.content.ContentValues
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.Toast
@@ -71,7 +72,6 @@ class MainActivity : AppCompatActivity() {
 
         banco.alterar( cadastro )
 
-
         Toast.makeText( this, "Registro Alterado...", Toast.LENGTH_LONG ).show()
 
     }
@@ -92,12 +92,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText( this, "Registro não encontrado", Toast.LENGTH_LONG ).show()
         }
 
-
-
     }
 
     fun btListarOnClick() {
-
+        val intent = Intent( this, ListarActivity::class.java )
+        startActivity( intent )
+/*
         val registros = banco.listar()
 
         val saida = StringBuilder()
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         Toast.makeText( this, saida.toString(), Toast.LENGTH_LONG ).show()
-
+*/
     }
 
     companion object {
