@@ -1,7 +1,9 @@
 package br.edu.utfpr.usandosqlite_pos2025
 
+import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -54,7 +56,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun btIncluirOnClick() {
+        val registro = ContentValues()
+        registro.put( "nome", binding.etNome.text.toString() )
+        registro.put( "telefone", binding.etTelefone.text.toString() )
+        
+        banco.insert( "cadastro", null, registro )
 
+        Toast.makeText( this, "Registro incluído...", Toast.LENGTH_LONG ).show()
     }
 
     fun btAlterarOnClick() {
