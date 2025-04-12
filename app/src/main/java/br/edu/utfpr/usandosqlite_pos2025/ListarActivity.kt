@@ -29,7 +29,6 @@ class ListarActivity : AppCompatActivity() {
         val registros = banco.listar()
 
         val adapter = MeuAdapter( this, registros )
-
         binding.lvPrincipal.adapter = adapter
 
     }

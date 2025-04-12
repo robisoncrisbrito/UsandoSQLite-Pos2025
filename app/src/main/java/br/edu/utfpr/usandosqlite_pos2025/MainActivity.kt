@@ -1,14 +1,10 @@
 package br.edu.utfpr.usandosqlite_pos2025
 
-import android.content.ContentValues
+
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import br.edu.utfpr.usandosqlite_pos2025.database.DatabaseHandler
 import br.edu.utfpr.usandosqlite_pos2025.databinding.ActivityMainBinding
 import br.edu.utfpr.usandosqlite_pos2025.entity.Cadastro
@@ -25,13 +21,22 @@ class MainActivity : AppCompatActivity() {
 
         setButtonsListeneres()
 
+        initData()
+
         banco = DatabaseHandler( this )
     }
 
-    fun setButtonsListeneres() {
-        binding.btIncluir.setOnClickListener {
-            btIncluirOnClick()
+    private fun initData() {
+
+        if ( intent.getIntExtra( "cod", 0 ) != 0 ) {
+            binding.etCod.setText(intent.getIntExtra("cod", 0).toString())
+            binding.etNome.setText(intent.getStringExtra("nome"))
+            binding.etTelefone.setText(intent.getStringExtra("telefone"))
         }
+
+    }
+
+    fun setButtonsListeneres() {
 
         binding.btAlterar.setOnClickListener {
             btAlterarOnClick()
@@ -45,9 +50,6 @@ class MainActivity : AppCompatActivity() {
             btPesquisarOnClick()
         }
 
-        binding.btListar.setOnClickListener {
-            btListarOnClick()
-        }
     }
 
     fun btIncluirOnClick() {
@@ -111,12 +113,6 @@ class MainActivity : AppCompatActivity() {
 
         Toast.makeText( this, saida.toString(), Toast.LENGTH_LONG ).show()
 */
-    }
-
-    companion object {
-        private const val ID = 0
-        private const val NOME = 1
-        private const val TELEFONE = 2
     }
 
 } //fim da Activity
