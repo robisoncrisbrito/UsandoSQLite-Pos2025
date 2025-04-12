@@ -1,6 +1,7 @@
 package br.edu.utfpr.usandosqlite_pos2025
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.SimpleCursorAdapter
@@ -26,10 +27,17 @@ class ListarActivity : AppCompatActivity() {
 
         banco = DatabaseHandler( this )
 
-        val registros = banco.listar()
+        binding.btIncluir.setOnClickListener {
+            val intent = Intent( this, MainActivity::class.java )
+            startActivity( intent )
+        }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val registros = banco.listar()
         val adapter = MeuAdapter( this, registros )
         binding.lvPrincipal.adapter = adapter
-
     }
 }
